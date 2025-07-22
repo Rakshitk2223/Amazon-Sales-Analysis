@@ -1,30 +1,35 @@
 # Amazon Sales Data Analysis Project
 
 ## 📊 Overview
-This project provides a comprehensive analysis of Amazon sales data, focusing on product pricing, ratings, categories, and customer reviews. The analysis includes data cleaning, exploratory data analysis (EDA), and visualizations to extract meaningful insights from the dataset.
+This project provides a comprehensive analysis of Amazon sales data, featuring advanced data science techniques including outlier detection, correlation analysis, missing value imputation, and business intelligence dashboard preparation. The analysis goes beyond basic EDA to provide actionable insights for e-commerce decision-making.
 
 ## 📁 Project Structure
 ```
 Amazon Sales Analysis/
-├── amazon.csv              # Raw dataset
-├── SalesAnalysis.ipynb     # Main Jupyter notebook with analysis
-├── Requirements.txt        # Python dependencies
-└── README.md              # Project documentation
+├── amazon.csv                # Raw dataset (1,465 products)
+├── CleanedAmazonSales.csv   # Processed dataset for Tableau/BI tools
+├── README.md                # Project documentation (this file)
+├── Requirements.txt         # Python dependencies (enhanced with 19 libraries)
+└── SalesAnalysis.ipynb      # Main Jupyter notebook with comprehensive analysis
 ```
 
 ## 📋 Dataset Information
-- **Total Products**: 1,465
-- **Columns**: 16
-- **Size**: 8.65 MB
-- **Missing Values**: Only 2 missing values in rating_count column (0.14%)
-- **No Duplicate Records**
+- **Total Products**: 1,465 unique products
+- **Total Reviews**: ~26.8 million across all products
+- **Original Columns**: 16 columns
+- **Enhanced Columns**: 21 columns (including 5 cleaned numerical columns)
+- **Dataset Size**: 8.65 MB
+- **Data Quality**: High quality with minimal missing values (successfully handled)
+- **Categories**: 1,351 unique products across multiple categories
+- **Users**: 1,194 unique reviewers
+- **No Duplicate Records**: Verified clean dataset
 
-### Dataset Columns:
+### Original Dataset Columns:
 - `product_id` - Unique identifier for each product
 - `product_name` - Name of the product
-- `category` - Product category hierarchy
-- `discounted_price` - Current selling price
-- `actual_price` - Original price before discount
+- `category` - Product category hierarchy (pipe-separated)
+- `discounted_price` - Current selling price (₹)
+- `actual_price` - Original price before discount (₹)
 - `discount_percentage` - Percentage discount offered
 - `rating` - Product rating (1-5 scale)
 - `rating_count` - Number of ratings received
@@ -37,11 +42,19 @@ Amazon Sales Analysis/
 - `img_link` - Product image URL
 - `product_link` - Product page URL
 
+### Enhanced Cleaned Columns:
+- `discounted_price_clean` - Numerical version of discounted price
+- `actual_price_clean` - Numerical version of actual price
+- `discount_percentage_clean` - Numerical version of discount percentage
+- `rating_clean` - Cleaned rating values (handled "|" separators)
+- `rating_count_clean` - Numerical version of rating count
+
 ## 🔧 Requirements & Setup
 
 ### Prerequisites
-- Python 3.7+
+- Python 3.7+ (recommended: Python 3.9+)
 - Jupyter Notebook or JupyterLab
+- 4GB+ RAM (for large dataset processing)
 
 ### Installation
 1. Clone or download this repository
@@ -50,103 +63,122 @@ Amazon Sales Analysis/
 pip install -r Requirements.txt
 ```
 
-### Required Libraries
+### Enhanced Required Libraries
 ```
-pandas                 # Data manipulation and analysis
-numpy                  # Numerical computing
-matplotlib             # Basic plotting
-seaborn               # Statistical data visualization
-plotly                # Interactive visualizations
-scikit-learn          # Machine learning library
-scipy                 # Scientific computing
-notebook              # Jupyter notebook
-jupyterlab            # JupyterLab interface
-openpyxl              # Excel file support
-wordcloud             # Text visualization
-textblob              # Text processing and sentiment analysis
-nltk                  # Natural language processing
-statsmodels           # Statistical modeling
-requests              # HTTP library
-beautifulsoup4        # Web scraping
+pandas>=1.5.0          # Data manipulation and analysis
+numpy>=1.21.0          # Numerical computing
+matplotlib>=3.5.0      # Basic plotting and visualization
+seaborn>=0.11.0        # Statistical data visualization
+plotly>=5.0.0          # Interactive visualizations
+scikit-learn>=1.1.0    # Machine learning library
+scipy>=1.7.0           # Scientific computing
+notebook>=6.4.0        # Jupyter notebook
+jupyterlab>=3.0.0      # JupyterLab interface
+openpyxl>=3.0.0        # Excel file support
+wordcloud>=1.8.0       # Text visualization
+textblob>=0.17.0       # Text processing and sentiment analysis
+nltk>=3.7              # Natural language processing
+statsmodels>=0.13.0    # Statistical modeling
+requests>=2.28.0       # HTTP library
+beautifulsoup4>=4.11.0 # Web scraping
+warnings               # Built-in warning handling
+datetime               # Built-in date/time handling
 ```
 
-## 📈 Analysis Highlights
+## 📈 Advanced Analysis Highlights
 
-### Key Findings:
-
-#### 💰 Pricing Analysis
+### 💰 Comprehensive Pricing Analysis
 - **Average Discounted Price**: ₹3,125.31
+- **Median Discounted Price**: ₹799.00
 - **Average Actual Price**: ₹5,444.99
+- **Median Actual Price**: ₹1,650.00
 - **Average Discount**: 47.7% (Maximum: 94%)
 - **Price Range**: ₹39 - ₹77,990
+- **Savings Analysis**: Average savings of ₹2,319 per product
 
-#### ⭐ Rating Analysis
+### ⭐ Rating & Review Intelligence
 - **Average Rating**: 4.10/5.0
+- **Median Rating**: 4.10/5.0
 - **Rating Range**: 2.0 - 5.0
 - **Total Reviews**: ~26.8 million across all products
 - **Average Reviews per Product**: 18,296
+- **Median Reviews per Product**: 5,179
+- **Review Volume**: Ranges from 2 to 426,973 reviews per product
 
-#### 🏷️ Product Categories (Top 5)
+### 🏷️ Product Category Analysis (Top 10)
 1. **USB Cables** - 233 products (15.9%)
 2. **Smart Watches** - 76 products (5.2%)
 3. **Smartphones** - 68 products (4.6%)
 4. **Smart Televisions** - 63 products (4.3%)
 5. **In-Ear Headphones** - 52 products (3.6%)
+6. **Remote Controls** - 49 products (3.3%)
+7. **Mixer Grinders** - 27 products (1.8%)
+8. **Computer Mice** - 24 products (1.6%)
+9. **HDMI Cables** - 24 products (1.6%)
+10. **Dry Irons** - 24 products (1.6%)
 
-## 📊 Visualizations Included
+### 📊 Data Quality & Statistical Analysis
+- **Outlier Detection**: Advanced IQR-based outlier identification
+  - Price outliers: 14.81% (legitimate premium products)
+  - Review outliers: 9.62% (viral/bestseller products)
+- **Missing Value Handling**: 
+  - Mean imputation for numerical columns
+  - Mode imputation for categorical columns
+- **Correlation Analysis**: Strong correlation (0.962) between actual and discounted prices
+- **Data Validation**: Comprehensive filtering of invalid values
 
-The notebook includes comprehensive visualizations:
+### 🎯 Record-Breaking Products
+- **Highest Discount**: 94% on USB-C adapter (₹4,999 → ₹294)
+- **Most Expensive**: Sony 65" 4K TV at ₹139,900
+- **Most Reviewed**: AmazonBasics HDMI Cable with 426,973 reviews
+- **Perfect Rating**: REDTECH USB-C Cable (5.0/5.0 with 18,296+ reviews)
 
-1. **Price Distribution Histogram** - Shows distribution of discounted prices
-2. **Rating Distribution Bar Chart** - Product rating frequency
-3. **Discount Percentage Distribution** - Distribution of discount percentages
-4. **Top Product Categories** - Most popular product categories
-5. **Summary Statistics Table** - Key metrics overview
+## 📊 Advanced Visualizations Portfolio
 
-## 🚀 How to Run the Analysis
+### Dashboard 1: Initial Analysis Overview
+1. **Price Distribution Histogram** - Right-skewed distribution analysis
+2. **Rating Distribution Bar Chart** - Customer satisfaction patterns
+3. **Discount Percentage Distribution** - Promotional strategy insights
+4. **Top Product Categories** - Market segment analysis
 
-1. **Open Jupyter Notebook**:
-```bash
-jupyter notebook SalesAnalysis.ipynb
-```
+### Dashboard 2: Maximum Values Analysis
+5. **Top 10 Products by Discount %** - Clearance and promotional insights
+6. **Top 10 Most Expensive Products** - Premium market analysis
+7. **Top 10 Most Reviewed Products** - Viral product identification
+8. **Top 10 Highest Rated Products** - Quality excellence (100+ reviews filter)
 
-2. **Run Cells Sequentially**:
-   - Cell 1-2: Import libraries and load data
-   - Cell 3-4: Basic data exploration
-   - Cell 5-6: Data cleaning and type conversion
-   - Cell 7-8: Missing values and duplicates analysis
-   - Cell 9-10: Categorical data analysis
-   - Cell 11-12: Comprehensive price and rating analysis
-   - Cell 13: Visualizations and summary statistics
+### Dashboard 3: Statistical Analysis
+9. **Outlier Detection Box Plots** - IQR-based statistical analysis
+10. **Correlation Heatmap** - Variable relationship mapping
+11. **Pair Plot Analysis** - Multi-variable relationship visualization
+12. **Distribution Analysis** - Statistical distribution with outlier bounds
 
-## 📝 Analysis Workflow
+## � Enhanced Analysis Workflow
 
-### 1. Data Loading & Basic Information
-- Load CSV data using pandas
-- Check dataset shape, memory usage, and column information
-- Display basic statistics
+### **Phase 1: Data Foundation (Cells 1-7)**
+- **Import & Setup**: Load 19 specialized libraries
+- **Data Loading**: Import 1,465 product records
+- **Basic Exploration**: Shape, memory usage, column analysis
+- **Initial Preview**: Sample data examination
 
-### 2. Data Quality Assessment
-- Identify missing values and duplicates
-- Analyze data types and formats
-- Handle data inconsistencies
+### **Phase 2: Data Quality & Cleaning (Cells 8-14)**
+- **Missing Value Analysis**: Comprehensive gap identification
+- **Data Type Examination**: Format validation and sion
+- **Categorical Analysis**: Category hierarchy exploration
+- **Data Cleaning**: Currency symbol removal, numeric conversion
+- **Missing Value Imputation**: Statistical mean/mode filling
 
-### 3. Data Cleaning & Preprocessing
-- Convert price columns (remove ₹ symbol and commas)
-- Clean rating data (handle special characters)
-- Convert percentage and count columns to numeric
-- Create clean versions of key columns
+### **Phase 3: Advanced Statistical Analysis (Cells 15-18)**
+- **Outlier Detection**: IQR method with data filtering
+- **Distribution Analysis**: Statistical validity verification
+- **Correlation Analysis**: Variable relationship mapping
+- **Pair Plot Generation**: Multi-dimensional visualization
 
-### 4. Exploratory Data Analysis (EDA)
-- Statistical summary of numerical columns
-- Category distribution analysis
-- Price and rating correlations
-- Product performance metrics
-
-### 5. Data Visualization
-- Multiple subplot charts for comprehensive overview
-- Interactive plots using matplotlib and seaborn
-- Summary statistics table
+### **Phase 4: Business Intelligence (Cells 19-22)**
+- **Maximum Value Analysis**: Record identification
+- **Performance Metrics**: Top performer analysis
+- **Dashboard Creation**: Business-ready visualizations
+- **Data Export**: Tableau/BI tool preparation
 
 ## 🔍 Potential Use Cases
 
@@ -169,16 +201,6 @@ Feel free to contribute to this project by:
 - Optimizing code performance
 - Adding machine learning models
 
-## 📄 License
-
-This project is for educational and analysis purposes. Please ensure you have appropriate rights to use the Amazon sales dataset.
-
-## 📞 Contact
-
-For questions or suggestions regarding this analysis, please feel free to reach out or create an issue in the repository.
-
 ---
 
 **Note**: This analysis is based on a sample Amazon sales dataset and is intended for educational purposes. Results should not be used for commercial decisions without proper validation and additional data sources.
-
-**Result** - 
