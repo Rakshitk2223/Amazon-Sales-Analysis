@@ -180,3 +180,5 @@ For questions or suggestions regarding this analysis, please feel free to reach 
 ---
 
 **Note**: This analysis is based on a sample Amazon sales dataset and is intended for educational purposes. Results should not be used for commercial decisions without proper validation and additional data sources.
+
+**Result** - 
