@@ -121,72 +121,78 @@ datetime               # Built-in date/time handling
 - **Outlier Detection**: Advanced IQR-based outlier identification
   - Price outliers: 14.81% (legitimate premium products)
   - Review outliers: 9.62% (viral/bestseller products)
-- **Missing Value Handling**: 
-  - Mean imputation for numerical columns
-  - Mode imputation for categorical columns
-- **Correlation Analysis**: Strong correlation (0.962) between actual and discounted prices
-- **Data Validation**: Comprehensive filtering of invalid values
 
-### 🎯 Record-Breaking Products
-- **Highest Discount**: 94% on USB-C adapter (₹4,999 → ₹294)
-- **Most Expensive**: Sony 65" 4K TV at ₹139,900
-- **Most Reviewed**: AmazonBasics HDMI Cable with 426,973 reviews
-- **Perfect Rating**: REDTECH USB-C Cable (5.0/5.0 with 18,296+ reviews)
+# Amazon Sales Analysis
 
-## 📊 Advanced Visualizations Portfolio
+## Overview
+This project delivers a comprehensive analysis of Amazon sales data, focusing on product pricing, discounts, ratings, reviews, and category trends. The analysis is performed in a Jupyter Notebook using Python's data science stack.
 
-### Dashboard 1: Initial Analysis Overview
-1. **Price Distribution Histogram** - Right-skewed distribution analysis
-2. **Rating Distribution Bar Chart** - Customer satisfaction patterns
-3. **Discount Percentage Distribution** - Promotional strategy insights
-4. **Top Product Categories** - Market segment analysis
+## Features
+- Data cleaning and missing value handling (mean/mode imputation)
+- Outlier detection and analysis (IQR method, improved for e-commerce data)
+- Categorical and numerical data exploration
+- Correlation analysis and pair plots
+- Maximum values analysis (discount, price, reviews, rating)
+- Beginner-friendly, enhanced visualizations
+- Export of clean, Tableau-ready dataset
+- Professional documentation and insights
 
-### Dashboard 2: Maximum Values Analysis
-5. **Top 10 Products by Discount %** - Clearance and promotional insights
-6. **Top 10 Most Expensive Products** - Premium market analysis
-7. **Top 10 Most Reviewed Products** - Viral product identification
-8. **Top 10 Highest Rated Products** - Quality excellence (100+ reviews filter)
+## Enhanced Visualizations (2025 Update)
+- **Multiple plots with only 2 graphs per plot** for improved readability
+- **Larger, clearer charts** with increased font sizes and better spacing
+- **Logical grouping**: Related analyses are paired together for easier interpretation
+- **Progressive revelation**: Information builds naturally across plots
+- **Color-coded, annotated charts** for easy interpretation
+- **Insight boxes and tips for beginners**
+- **Market share, price-quality, savings, and value analysis**
 
-### Dashboard 3: Statistical Analysis
-9. **Outlier Detection Box Plots** - IQR-based statistical analysis
-10. **Correlation Heatmap** - Variable relationship mapping
-11. **Pair Plot Analysis** - Multi-variable relationship visualization
-12. **Distribution Analysis** - Statistical distribution with outlier bounds
+### Visualization Structure
+Analysis is now organized into several separate plots:
+1. **Pricing & Satisfaction** - Core customer insights
+2. **Discounts & Market** - Deal analysis and category breakdown
+3. **Quality & Popularity** - Price-rating relationship and viral products
+4. **Savings & Comparison** - Budget vs premium analysis
+5. **Discount Champions** - Best deals available
+6. **Viral & Excellence** - Most popular and highest-rated products
+7. **Category & Value** - Best in each category and value champions
 
-## � Enhanced Analysis Workflow
+## How to Use
+1. Install dependencies from `Requirements.txt`
+2. Open `SalesAnalysis.ipynb` in Jupyter or VS Code
+3. Run all cells for a full analysis and visual dashboard
+4. Use `CleanedAmazonSales.csv` for BI tools like Tableau
 
-### **Phase 1: Data Foundation (Cells 1-7)**
-- **Import & Setup**: Load 19 specialized libraries
-- **Data Loading**: Import 1,465 product records
-- **Basic Exploration**: Shape, memory usage, column analysis
-- **Initial Preview**: Sample data examination
+## Project Structure
+- `amazon.csv` - Raw Amazon sales data
+- `SalesAnalysis.ipynb` - Main analysis notebook
+- `CleanedAmazonSales.csv` - Cleaned, BI-ready export
+- `Graphs/` - Saved visualizations
+- `README.md` - Project documentation
+- `Requirements.txt` - Python dependencies
 
-### **Phase 2: Data Quality & Cleaning (Cells 8-14)**
-- **Missing Value Analysis**: Comprehensive gap identification
-- **Data Type Examination**: Format validation and sion
-- **Categorical Analysis**: Category hierarchy exploration
-- **Data Cleaning**: Currency symbol removal, numeric conversion
-- **Missing Value Imputation**: Statistical mean/mode filling
+## Technical Stack
+- Python 3.7+
+- pandas, numpy, matplotlib, seaborn, plotly, scikit-learn, scipy, wordcloud, textblob, nltk, statsmodels
 
-### **Phase 3: Advanced Statistical Analysis (Cells 15-18)**
-- **Outlier Detection**: IQR method with data filtering
-- **Distribution Analysis**: Statistical validity verification
-- **Correlation Analysis**: Variable relationship mapping
-- **Pair Plot Generation**: Multi-dimensional visualization
+## Key Insights
+- Most products are budget-friendly (under ₹1,000)
+- High customer satisfaction (majority rated 4+ stars)
+- Great discounts available (average 48% off)
+- Electronics dominate the market
+- Premium products maintain high quality
+- Significant savings opportunities
+- Best value products identified by rating and discount
 
-### **Phase 4: Business Intelligence (Cells 19-22)**
-- **Maximum Value Analysis**: Record identification
-- **Performance Metrics**: Top performer analysis
-- **Dashboard Creation**: Business-ready visualizations
-- **Data Export**: Tableau/BI tool preparation
+## Recent Updates
+- Visualizations now split into multiple plots with only 2 graphs per plot for better readability
+- Outlier detection improved for e-commerce data
+- README and documentation expanded
 
-## 🔍 Advanced Use Cases & Extensions
+## Contribution
+Feel free to fork, open issues, or submit pull requests for improvements.
 
-### **Machine Learning Applications**
-- **Price Prediction**: Regression models based on features and ratings
-- **Recommendation Systems**: Collaborative filtering using review patterns
-- **Sentiment Analysis**: NLP processing of review content for customer insights
-- **Customer Segmentation**: Clustering analysis of user behavior and preferences
+## License
+MIT License
 - **Demand Forecasting**: Time series analysis for inventory planning
 - **Fraud Detection**: Anomaly detection for fake reviews and suspicious patterns
 
